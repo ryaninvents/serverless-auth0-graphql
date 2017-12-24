@@ -1,0 +1,27 @@
+{
+  "name": "@r24y/serverless-auth0-graphql",
+  "private": true,
+  "version": "0.0.0-semantically-versioned",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "postinstall": "lerna bootstrap",
+    "all": "lerna run",
+    "build": "lerna run build",
+    "deploy-assets": "lerna run deploy-assets",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Kennedy",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-lambda": "^1.2.0",
+    "auth0": "^2.9.1",
+    "graphql": "^0.11.7"
+  },
+  "devDependencies": {
+    "lerna": "^2.5.1",
+    "serverless": "^1.24.1",
+    "serverless-plugin-scripts": "^1.0.2",
+    "serverless-stack-output": "^0.2.3"
+  }
+}

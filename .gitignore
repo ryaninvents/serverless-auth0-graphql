@@ -1,0 +1,13 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Credentials
+secrets.json
+vars.json
+
+# Output
+stack.json

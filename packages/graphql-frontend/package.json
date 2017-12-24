@@ -1,0 +1,21 @@
+{
+  "name": "@r24y/serverless-graphql-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "auth0-js": "^8.12.0",
+    "history": "^4.7.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "postinstall": "ln -sf ../../../vars.json src/vars.json",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy-assets": "aws s3 sync ./build s3://$(node -e 'console.log(require(\"../../stack.json\").StaticAssetBucket)') --delete"
+  }
+}
