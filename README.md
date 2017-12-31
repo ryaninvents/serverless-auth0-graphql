@@ -4,13 +4,11 @@ Basic application scaffold using Serverless Framework, AWS Lambda, GraphQL, and 
 ## Deploying
 Create a new Auth0 client. Copy `vars.example.json` as `vars.json` and copy `secrets.example.json` as `secrets.json`; edit each with the credentials provided by Auth0.
 
+Run `npm create-asset-bucket -- $BUCKET_NAME`, substituting the name of your static-assets bucket for `$BUCKET_NAME`.
+
 Run `serverless deploy`.
 
 Once the deployment has finished, run `sls info --verbose` (or check `stack.json`) for the value of `WebAppCloudFrontDistributionOutput`. Update the client settings in Auth0 for "Allowed Callback URLs", "Allowed Web Origins", "Allowed Logout URLs", and "Allowed Origins (CORS)" to match the origin (note: it is required to add the "https://" to the origin in the Auth0 settings).
-
-### Removing deployment
-
-Before running `sls remove`, make sure you delete all contents of the static assets bucket first, or the CloudFormation stack removal will fail.
 
 ### Troubleshooting deployment
 

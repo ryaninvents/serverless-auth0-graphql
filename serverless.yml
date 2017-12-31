@@ -12,13 +12,15 @@ provider:
 #  region: us-east-1
 
 custom:
-  s3Bucket: ${file(./vars.json):S3_BUCKET_NAME}
+  s3:
+    bucket: ${file(./vars.json):S3_BUCKET_NAME}
+    prefix: apps/${self:service}/stages/${self:provider.stage}
   output:
     file: stack.json
   scripts:
     hooks:
       'deploy:createDeploymentArtifacts': npm run build
-      'after:deploy:resources': npm run deploy-assets
+      'deploy:finalize': npm run deploy-assets
     
 plugins:
   - serverless-stack-output
@@ -66,37 +68,14 @@ resources:
         RestApiId:
           Ref: 'ApiGatewayRestApi'
         StatusCode: '401'
-
-    ## Specifying the S3 Bucket
-    WebAppS3Bucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: ${self:custom.s3Bucket}
-        AccessControl: PublicRead
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: index.html
-    ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
-    WebAppS3BucketPolicy:
-      Type: AWS::S3::BucketPolicy
-      Properties:
-        Bucket:
-          Ref: WebAppS3Bucket
-        PolicyDocument:
-          Statement:
-            - Sid: PublicReadGetObject
-              Effect: Allow
-              Principal: "*"
-              Action:
-              - s3:GetObject
-              Resource: arn:aws:s3:::${self:custom.s3Bucket}/*
     ## Specifying the CloudFront Distribution to server your Web Application
     WebAppCloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
       Properties:
         DistributionConfig:
           Origins:
-            - DomainName: ${self:custom.s3Bucket}.s3.amazonaws.com
+            - DomainName: ${self:custom.s3.bucket}.s3.amazonaws.com
+              OriginPath: /${custom.s3.prefix}
               ## An identifier for the origin which must be unique within the distribution
               Id: WebApp
               CustomOriginConfig:
