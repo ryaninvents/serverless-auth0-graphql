@@ -1,4 +1,5 @@
 {
+  "APP_NAME": "serverless-auth0-graphql",
   "S3_BUCKET_NAME": "my-app-content-bucket",
   "AUTH0_DOMAIN": "mydomain.auth0.com",
   "AUTH0_CLIENT_ID": "your-client-id"

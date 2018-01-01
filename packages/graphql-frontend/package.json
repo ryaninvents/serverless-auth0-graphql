@@ -13,9 +13,9 @@
   "scripts": {
     "start": "react-scripts start",
     "postinstall": "ln -sf ../../../vars.json src/vars.json",
-    "build": "react-scripts build",
+    "build": "npm run postinstall && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy-assets": "aws s3 sync ./build s3://$(node -e 'console.log(require(\"../../stack.json\").StaticAssetBucket)') --delete"
+    "deploy-assets": "aws s3 sync ./build $(node ./s3-location.js) --delete"
   }
 }

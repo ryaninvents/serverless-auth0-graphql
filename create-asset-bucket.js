@@ -19,6 +19,11 @@ const BUCKET_NAME = process.argv[2];
             throw err;
         }
     }
+    console.log(`Updating ACL...`);
+    await s3.putBucketAcl({
+        Bucket: BUCKET_NAME,
+        ACL: 'public-read',
+    }).promise();
     console.log(`Setting bucket policy...`);
     await s3.putBucketPolicy({
         Bucket: BUCKET_NAME,
@@ -32,6 +37,18 @@ const BUCKET_NAME = process.argv[2];
                 Resource: `arn:aws:s3:::${BUCKET_NAME}/*`,
             }],
         })
+    }).promise();
+    console.log(`Setting bucket website configuration...`);
+    await s3.putBucketWebsite({
+        Bucket: BUCKET_NAME,
+        WebsiteConfiguration: {
+          ErrorDocument: {
+            Key: "index.html"
+          }, 
+          IndexDocument: {
+            Suffix: "index.html"
+          }
+        }
     }).promise();
     console.log('Done.');
 })();
