@@ -10,6 +10,7 @@
     "all": "lerna run",
     "build": "lerna run build",
     "deploy-assets": "lerna run deploy-assets",
+    "create-secrets-files": "cp vars.example.json vars.json && cp secrets.example.json secrets.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ryan Kennedy",

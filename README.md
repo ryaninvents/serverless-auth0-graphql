@@ -2,7 +2,7 @@
 Basic application scaffold using Serverless Framework, AWS Lambda, GraphQL, and Auth0.
 
 ## Deploying
-Create a new Auth0 client. Copy `vars.example.json` as `vars.json` and copy `secrets.example.json` as `secrets.json`; edit each with the credentials provided by Auth0.
+Create a new Auth0 client. Run `npm run create-secrets-files`; edit `vars.json` and `secrets.json` with the credentials provided by Auth0.
 
 Run `npm create-asset-bucket -- $BUCKET_NAME`, substituting the name of your static-assets bucket for `$BUCKET_NAME`.
 
