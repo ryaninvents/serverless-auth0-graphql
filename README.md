@@ -1,10 +1,10 @@
 # serverless-auth0-graphql
-Basic application scaffold using Serverless Framework, AWS Lambda, GraphQL, and Auth0.
+Basic application scaffold using Serverless Framework, AWS Lambda, GraphQL, and Auth0. Requires local Node >= 8.
 
 ## Deploying
 Create a new Auth0 client. Run `npm run create-secrets-files`; edit `vars.json` and `secrets.json` with the credentials provided by Auth0.
 
-Run `npm create-asset-bucket -- $BUCKET_NAME`, substituting the name of your static-assets bucket for `$BUCKET_NAME`.
+Run `npm run create-asset-bucket -- $BUCKET_NAME`, substituting the name of your static-assets bucket for `$BUCKET_NAME`. `$BUCKET_NAME` must not contain the dot (`.`) character to ensure that the S3 endpoint has the correct TLS certificate (see [this StackOverflow question](https://stackoverflow.com/questions/32714351/amazon-s3-using-dns-alias-to-bucket-https-at-the-same-time) for details).
 
 Run `serverless deploy`.
 
