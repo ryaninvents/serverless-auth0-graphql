@@ -103,8 +103,8 @@ resources:
                 OriginProtocolPolicy: https-only
           Enabled: 'true'
           ## Uncomment the following section in case you are using a custom domain
-          # Aliases:
-          # - mysite.example.com
+          Aliases:
+          - ${self:custom.dns.app}
           DefaultRootObject: index.html
           ## Since the Single Page App is taking care of the routing we need to make sure ever path is served with index.html
           ## The only exception are files that actually exist e.h. app.js, reset.css
