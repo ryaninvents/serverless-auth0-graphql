@@ -168,7 +168,7 @@ resources:
         DomainName: ${self:custom.dns.app}
         DomainValidationOptions:
         - DomainName: ${self:custom.dns.app}
-          ValidationDomain: ${self:custom.dns.app}
+          ValidationDomain: ${self:custom.dns.rootDomain}
 
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
