@@ -33,6 +33,10 @@ custom:
 plugins:
   - serverless-stack-output
   - serverless-plugin-scripts
+package:
+  exclude:
+    - 'packages/**'
+    - '*.log'
 
 functions:
   graphql:
